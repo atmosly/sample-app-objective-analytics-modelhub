@@ -16,15 +16,15 @@ RUN mkdir -p $APP && \
 
 WORKDIR /services
 
-COPY *.py  $APP
-COPY requirements.txt $APP
+COPY version_checker/docker/*.py  $APP
+COPY version_checker/docker/requirements.txt $APP
 
 RUN pip install -r version_checker/requirements.txt
 
 
-COPY gunicorn.conf.py /etc/
-COPY nginx.conf /etc/nginx/
-COPY entry_point.sh /services
+COPY version_checker/docker/gunicorn.conf.py /etc/
+COPY version_checker/docker/nginx.conf /etc/nginx/
+COPY version_checker/docker/entry_point.sh /services
 
 
 CMD /services/entry_point.sh
